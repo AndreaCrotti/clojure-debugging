@@ -2,7 +2,8 @@
  :deps  {hashp/hashp {:mvn/version "0.2.2"}
          tupelo/tupelo {:mvn/version "23.03.03f"}
          philoskim/debux {:mvn/version "0.8.2"}
-         com.taoensso/tufte {:mvn/version "2.4.5"}}
+         com.taoensso/tufte {:mvn/version "2.4.5"}
+         hato/hato {:mvn/version "0.9.0"}}
  :aliases
  {:test {:main-opts ["-m" "kaocha.runner"]
          :extra-deps {lambdaisland/kaocha {:mvn/version "1.80.1274"}}}

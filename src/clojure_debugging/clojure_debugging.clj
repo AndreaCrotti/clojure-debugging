@@ -1,10 +1,4 @@
-(ns clojure-debugging.clojure-debugging
-  "FIXME: my new org.corfield.new/scratch project.")
-
-(defn exec
-  "Invoke me with clojure -X clojure-debugging.clojure-debugging/exec"
-  [opts]
-  (println "exec with" opts))
+(ns clojure-debugging.clojure-debugging)
 
 (defn -main
   "Invoke me with clojure -M -m clojure-debugging.clojure-debugging"

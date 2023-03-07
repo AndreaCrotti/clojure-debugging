@@ -1,4 +1,9 @@
 {:paths ["src"]
- :deps  {}
- :aliases 
- {:neil {:project {:name clojure-debugging/clojure-debugging}}}}
+ :deps  {hashp/hashp {:mvn/version "0.2.2"}
+         tupelo/tupelo {:mvn/version "23.03.03f"}
+         philoskim/debux {:mvn/version "0.8.2"}
+         com.taoensso/tufte {:mvn/version "2.4.5"}}
+ :aliases
+ {:test {:main-opts ["-m" "kaocha.runner"]
+         :extra-deps {lambdaisland/kaocha {:mvn/version "1.80.1274"}}}
+  :neil {:project {:name clojure-debugging/clojure-debugging}}}}

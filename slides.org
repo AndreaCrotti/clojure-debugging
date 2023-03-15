@@ -1,0 +1,18 @@
+#+AUTHOR: Andrea Crotti
+#+OPTIONS: num:nil ^:nil tex:t toc:nil reveal_progress:t reveal_control:t reveal_overview:t
+#+REVEAL_THEME: dracula
+#+REVEAL_TRANS: fade
+#+REVEAL_SPEED: fast
+#+REVEAL_TOC: listings
+
+#+title: Problem Solving
+
+* Problems
+
+* Problem solving
+
+* Bad
+
+* Improve your problem solving
+
+* Conclusions

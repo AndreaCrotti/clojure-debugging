@@ -26,16 +26,22 @@ In this talk I'll just concentrate on solving problems that software engineers n
 
 * Murder or Bug
 
+ #+REVEAL_HTML: <div class="column" style="float:right; width:30%">
+ #+ATTR_ORG: :width 150
 - Both
   - can cause someone's death
   - it's hard to find the culprit
-  -
 
+
+ #+ATTR_ORG: :width 150
 - Bug
   - can often reproduce locally
 
+ #+ATTR_ORG: :width 150
 - Murder
   - it's often the butler
+
+ #+REVEAL_HTML: </div>
 
 * The method
 

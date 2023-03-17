@@ -24,6 +24,19 @@ In this talk I'll just concentrate on solving problems that software engineers n
 
 #+end_notes
 
+* Murder or Bug
+
+- Both
+  - can cause someone's death
+  - it's hard to find the culprit
+  -
+
+- Bug
+  - can often reproduce locally
+
+- Murder
+  - it's often the butler
+
 * The method
 
 ** Describe the problem
@@ -99,7 +112,7 @@ digraph flow {
 - no code changed
 - what is going on?
 
-** A slow request (2)
+#+REVEAL: split
 
 #+begin_src clojure
 (declare heavy-transformations)
@@ -109,6 +122,12 @@ digraph flow {
     (heavy-transformations (request))))
 #+end_src
 
+|--------------------------------------------+---------|
+| fn                                         | max time |
+|--------------------------------------------+---------|
+| :clojure-debugging.speedy/defn_without-fmt | 21.22μs |
+| :clojure-debugging.speedy/defn_with-fmt    | 53.34μs |
+
 ** A question of space
 
 - kafka connect workers stop working
@@ -116,7 +135,7 @@ digraph flow {
 - no useful logs anywhere
 - the process is still running, it just hangs forever
 
-** A question of space (2)
+#+REVEAL: split
 
 #+begin_src clojure
 (defn store-files!
@@ -133,3 +152,5 @@ digraph flow {
 #+begin_quote
 "The answer is inside you, but it's wrong" ~ Quelo
 #+end_quote
+
+*WWHD* (What Would Holmes Do)

@@ -50,6 +50,7 @@ In this talk I'll just concentrate on solving problems that software engineers n
 - can you reproduce it in a test
 - is it a production only issue
 - change *ONE THING AT A TIME*
+- *bisect* all the things
 
 ** Evaluate your solution
 
@@ -57,18 +58,15 @@ In this talk I'll just concentrate on solving problems that software engineers n
 “When you have eliminated all which is impossible, then whatever remains, however improbable, must be the truth.” ~ Arthur Conan Doyle, The Case-Book of Sherlock Holmes
 #+END_QUOTE
 
-
 #+begin_quote
 Elementary, my dear Watson' ~ Sherlock Holmes
 #+end_quote
 
 ** Are we done yet?
-#+begin_quote
-"The answer is inside you, but it's wrong" ~ Quelo
-#+end_quote
 
 - is the problem really gone?
 - are you sure it can't happen again?
+- what else can you do to make the system more resilient/transparent?
 
 ** Put it all together
 
@@ -96,6 +94,13 @@ digraph flow {
 
 ** A slow request
 
+- moved an API from http to HTTPS
+- the API got unbearably slow
+- no code changed
+- what is going on?
+
+** A slow request (2)
+
 #+begin_src clojure
 (declare heavy-transformations)
 
@@ -106,6 +111,25 @@ digraph flow {
 
 ** A question of space
 
-- all workers
+- kafka connect workers stop working
+- no code changed
+- no useful logs anywhere
+- the process is still running, it just hangs forever
+
+** A question of space (2)
+
+#+begin_src clojure
+(defn store-files!
+  [{:keys [file-writing-pool] :as ctx}
+   {:keys [batch-id] :as batch}]
+  (log/log "Storing files" {:batch-id batch-id})
+  (cp/future file-writing-pool
+             (println "writing out these files")))
+
+#+end_src
 
 * Conclusions
+
+#+begin_quote
+"The answer is inside you, but it's wrong" ~ Quelo
+#+end_quote

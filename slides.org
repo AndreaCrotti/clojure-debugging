@@ -8,11 +8,104 @@
 #+title: Problem Solving
 
 * Problems
+#+begin_notes
+Problems are a part of life, from how to fix your washing machine to how to debug an arcane production issue, we are constantly trying to solve problems.
+Problem solving however is not really an art that's studied in itself, even though becoming good at problem solving can dramatically change your life.
+
+To clarify I'm not an expert in problem solving, I just wanted to give this talk to raise some interest in the issue, and also in my years of software development I've seen so many times people (including myself) wasting days solving problems when it could have taken a lot less if they approached them with an actual method.
+#+end_notes
+
+[[./problems.webp]]
 
 * Problem solving
+#+begin_notes
+After researching the topic a bit more to prepare for this talk, I've realised that you could probably talk for hours about all the possible problem solving techniques and strategies.
+In this talk I'll just concentrate on solving problems that software engineers normally encounter, and how you would go about it.
 
-* Bad
+#+end_notes
 
-* Improve your problem solving
+* The method
+
+** Describe the problem
+
+#+begin_quote
+“Data! Data! Data!” he cried impatiently. “I can’t make bricks without clay.” ~ Sherlock Holmes
+#+end_quote
+
+- don't guess!
+- gather as much data as possible
+- ask lots of questions
+  - when did the problem happen first?
+  - what did we change?
+  - have any of the external dependencies changed?
+  - what external factors are affecting the behaviour
+
+** Reproduce
+
+#+begin_quote
+‘You see, but you do not observe. The distinction is clear.’ ~ Sherlock Holmes
+#+end_quote
+
+- can you reproduce it locally
+- can you reproduce it in a test
+- is it a production only issue
+- change *ONE THING AT A TIME*
+
+** Evaluate your solution
+
+#+BEGIN_QUOTE
+“When you have eliminated all which is impossible, then whatever remains, however improbable, must be the truth.” ~ Arthur Conan Doyle, The Case-Book of Sherlock Holmes
+#+END_QUOTE
+
+
+#+begin_quote
+Elementary, my dear Watson' ~ Sherlock Holmes
+#+end_quote
+
+** Are we done yet?
+#+begin_quote
+"The answer is inside you, but it's wrong" ~ Quelo
+#+end_quote
+
+- is the problem really gone?
+- are you sure it can't happen again?
+
+** Put it all together
+
+#+begin_src dot :file graph.png
+digraph flow {
+    data [label="Collect Data"]
+    theory [label="Create Theory"]
+    worked [label="did it work", shape="diamond"]
+    done [label="Well done"]
+    test [label="Validate theory"]
+
+    data -> theory
+    theory -> test
+    test -> worked
+    worked -> theory [label="No"]
+    worked -> done [label="Yes"]
+
+}
+#+end_src
+
+#+RESULTS:
+[[file:graph.png]]
+
+* Case studies
+
+** A slow request
+
+#+begin_src clojure
+(declare heavy-transformations)
+
+(defn do-lots-of-smart-stuff [request]
+  (let [ts (cf/parse (-> request :json-params :ts))]
+    (heavy-transformations (request))))
+#+end_src
+
+** A question of space
+
+- all workers
 
 * Conclusions

@@ -17,3 +17,4 @@
    (dotimes [_ 100]
      (with-fmt f "2023-03-01")
      (without-fmt "2023-03-01"))));; =>
+;; => nil

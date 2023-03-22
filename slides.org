@@ -1,47 +1,36 @@
 #+AUTHOR: Andrea Crotti
-#+OPTIONS: num:nil ^:nil tex:t toc:nil reveal_progress:t reveal_control:t reveal_overview:t
 #+REVEAL_THEME: dracula
 #+REVEAL_TRANS: fade
 #+REVEAL_SPEED: fast
 #+REVEAL_TOC: listings
 
 #+title: Problem Solving
+#+subtitle: For Software Engineers
 
-* Problems
+
+* TODO check if we need the TOC or should get rid
+
+* TODO think if the case studies are simple enough and add more information there
+
+* TODO justify all the quotes from Sherlock Holmes
+
+*  Problem solving
 #+begin_notes
-Problems are a part of life, from how to fix your washing machine to how to debug an arcane production issue, we are constantly trying to solve problems.
-Problem solving however is not really an art that's studied in itself, even though becoming good at problem solving can dramatically change your life.
+As software engineers, we are constantly solving problems. They can be as hard
+as a subtle concurrency bug that takes a week to find, to just understanding why
+a library is not behaving as you think it should.
 
-To clarify I'm not an expert in problem solving, I just wanted to give this talk to raise some interest in the issue, and also in my years of software development I've seen so many times people (including myself) wasting days solving problems when it could have taken a lot less if they approached them with an actual method.
+This talk just concentrates on the hard problems and a method about how to tackle them.
+I'm in no way an expert problem solver, but the reasons why I wanted to give this talk is because in my career I've spent an enormous amount of time solving hard problems, and in retrospect with a more methodic approach would have allowed me to go way faster and not stress as much.
+
+As you will see from the next slides there are lots of Sherlock Holmes, who I think would have been a great software engineer, or at least a great debugging consultant.
 #+end_notes
 
-[[./problems.webp]]
 
-* Problem solving
-#+begin_notes
-After researching the topic a bit more to prepare for this talk, I've realised that you could probably talk for hours about all the possible problem solving techniques and strategies.
-In this talk I'll just concentrate on solving problems that software engineers normally encounter, and how you would go about it.
+#+begin_quote
+Elementary, my dear Watson' ~ Sherlock Holmes
+#+end_quote
 
-#+end_notes
-
-* Murder or Bug
-
- #+REVEAL_HTML: <div class="column" style="float:right; width:30%">
- #+ATTR_ORG: :width 150
-- Both
-  - can cause someone's death
-  - it's hard to find the culprit
-
-
- #+ATTR_ORG: :width 150
-- Bug
-  - can often reproduce locally
-
- #+ATTR_ORG: :width 150
-- Murder
-  - it's often the butler
-
- #+REVEAL_HTML: </div>
 
 * The method
 
@@ -77,10 +66,6 @@ In this talk I'll just concentrate on solving problems that software engineers n
 “When you have eliminated all which is impossible, then whatever remains, however improbable, must be the truth.” ~ Arthur Conan Doyle, The Case-Book of Sherlock Holmes
 #+END_QUOTE
 
-#+begin_quote
-Elementary, my dear Watson' ~ Sherlock Holmes
-#+end_quote
-
 ** Are we done yet?
 
 - is the problem really gone?
@@ -109,7 +94,7 @@ digraph flow {
 #+RESULTS:
 [[file:graph.png]]
 
-* Case studies
+* Examples
 
 ** A slow request
 
@@ -160,3 +145,21 @@ digraph flow {
 #+end_quote
 
 *WWHD* (What Would Holmes Do)
+
+* Murder or Bug
+
+ #+ATTR_ORG: :width 150
+- Both
+  - can cause someone's death
+  - it's hard to find the culprit
+
+
+ #+ATTR_ORG: :width 150
+- Bug
+  - can often reproduce locally
+
+ #+ATTR_ORG: :width 150
+- Murder
+  - it's often the butler
+
+ #+REVEAL_HTML: </div>

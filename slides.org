@@ -42,13 +42,11 @@ I will start with the things you should not do first.
 Specially when the problem you are trying to solve is affecting production you might panic and just try to rush to find a solution.
 Unfortunately that pretty much never helps and you if you don't think clearly you might just end up wasting a lot of time following the wrong lead, and make the situation even worse.
 For the same reason you should not try to guess without enough evidence.
-Lastly avoid pointing fingers, blaming the last person who deployed a change might just be wrong and will just put the other person on the defensive.
 #+end_notes
 
 - don't panic
 - don't rush
 - don't guess
-- don't blame
 
 ** Describe the problem
 
@@ -98,7 +96,6 @@ In this phase is also very important to keep track of all the attempts you've ma
 “When you have eliminated all which is impossible, then whatever remains, however improbable, must be the truth.” ~ Sherlock Holmes
 #+END_QUOTE
 
-- history is your friend
 - change *ONE VARIABLE AT A TIME*
 - keep track of all your attempts
 - test your fix in the real environment
@@ -107,7 +104,8 @@ In this phase is also very important to keep track of all the attempts you've ma
 
 #+begin_notes
 Assuming you fixed the problem and deployed it successfully, are we done yet?
-
+In this phase you should have think if you've really done everything you could to make sure the problem you solved won't happen again.
+This might involve writing more tests, add some extra assertions or even extra documentation if there are no code changes that can really help anymore.
 #+end_notes
 
 #+begin_quote
@@ -144,7 +142,7 @@ Just a one line change adding an actual format made some requests that were taki
 (defn do-lots-of-smart-stuff [request]
   (let [;; slow
         ts (cf/parse (-> request :json-params :ts))
-        ;; very fast
+        ;; fast
         ;; ts (cf/parse (-> request :json-params :ts) (cf/formatter "YYYY-MM-DD"))
         ]
     (heavy-transformations (request))))
@@ -177,6 +175,19 @@ Just a one line change adding an actual format made some requests that were taki
   (cp/future file-writing-pool
              (println "writing out these files")))
 
+#+end_src
+
+#+begin_src clojure
+(defn parse
+  "Returns a DateTime instance in the UTC time zone obtained by parsing the
+   given string according to the given formatter."
+  (^org.joda.time.DateTime [^DateTimeFormatter fmt ^String s]
+   (.parseDateTime fmt s))
+  (^org.joda.time.DateTime [^String s]
+   (first
+    (for [f (vals formatters)
+          :let [d (try (parse f s) (catch Exception _ nil))]
+          :when d] d)))
 #+end_src
 
 * Conclusions

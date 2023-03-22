@@ -2,8 +2,9 @@
 #+REVEAL_THEME: dracula
 #+REVEAL_TRANS: fade
 #+REVEAL_SPEED: fast
-#+REVEAL_TOC: listings
-#+REVEAL_INIT_OPTIONS: slideNumber:false
+#+REVEAL_TOC: nil
+#+OPTIONS: num:nil ^:nil tex:t toc:nil reveal_progress:t reveal_control:t
+#+reveal_overview:t
 
 #+title: Problem Solving
 #+subtitle: For Software Engineers
@@ -29,7 +30,6 @@ I'm in no way an expert problem solver, but the reasons why I wanted to give thi
 As you will see from the next slides there are lots of Sherlock Holmes, who I think would have been a great software engineer, or at least a great debugging consultant.
 Fun fact about the "Elementary, my dear Watson", these exact words are never used in Holmes stories, but it was paraphrased from the "Crooked Man", and it was “‘Excellent!’ I [Watson] cried. ‘Elementary,’ said he.”
 #+end_notes
-
 
 #+begin_quote
 Elementary, my dear Watson' ~ Sherlock Holmes
@@ -79,49 +79,51 @@ In this phase you should collect all the evidence and write down a detailed desc
 
 ** Reproduce
 
+#+begin_notes
+This phase is maybe the hardest one, since sometimes you can't really reproduce easily a production issue.
+It's also very important though because if you can't reproduce a problem, it will be a lot harder to know if you actually fixed it or not.
+So try to reproduce the problem locally, even better if you can write a failing test.
+If it turns out that you really can't reproduce the problem at all then that's also very valuable information, since it probably means that it's not something under your control that's causing the software to misbehave.
+
+#+end_notes
+
 #+begin_quote
 ‘You see, but you do not observe. The distinction is clear.’ ~ Sherlock Holmes
 #+end_quote
 
-- can you reproduce it locally
-- can you reproduce it in a test
-- is it a production only issue
-- change *ONE THING AT A TIME*
-- *bisect* all the things
+- can you reproduce the problem?
+- can you write a failing test?
 
-** Evaluate your solution
+** Fix it
+
+#+begin_notes
+At this stage hopefully we know what the problem is, and we can really go about at fixing it.
+This phase can take quite a long time depending on how easily you can reproduce the problem, but the main takeaways here are that you really need to change one thing at a time.
+In this phase is also very important to keep track of all the attempts you've made, specially if it's an extremely difficult problem to solve and can take days, you'll be grateful to have it all written down.
+#+end_notes
 
 #+BEGIN_QUOTE
-“When you have eliminated all which is impossible, then whatever remains, however improbable, must be the truth.” ~ Arthur Conan Doyle, The Case-Book of Sherlock Holmes
+“When you have eliminated all which is impossible, then whatever remains, however improbable, must be the truth.” ~ Sherlock Holmes
 #+END_QUOTE
 
+- history is your friend
+- change *ONE VARIABLE AT A TIME*?
+- keep track of all your attempts
+- test your fix in the real environment
+
 ** Are we done yet?
+
+#+begin_notes
+Assuming you
+#+end_notes
+
+#+begin_quote
+“Those who cannot remember the past are condemned to repeat it.” ~ George Santayana
+#+end_quote
 
 - is the problem really gone?
 - are you sure it can't happen again?
 - what else can you do to make the system more resilient/transparent?
-
-** Put it all together
-
-#+begin_src dot :file graph.png
-digraph flow {
-    data [label="Collect Data"]
-    theory [label="Create Theory"]
-    worked [label="did it work", shape="diamond"]
-    done [label="Well done"]
-    test [label="Validate theory"]
-
-    data -> theory
-    theory -> test
-    test -> worked
-    worked -> theory [label="No"]
-    worked -> done [label="Yes"]
-
-}
-#+end_src
-
-#+RESULTS:
-[[file:graph.png]]
 
 * Examples
 
@@ -192,3 +194,24 @@ digraph flow {
   - it's often the butler
 
  #+REVEAL_HTML: </div>
+* Put it all together
+
+#+begin_src dot :file graph.png
+digraph flow {
+    data [label="Collect Data"]
+    theory [label="Create Theory"]
+    worked [label="did it work", shape="diamond"]
+    done [label="Well done"]
+    test [label="Validate theory"]
+
+    data -> theory
+    theory -> test
+    test -> worked
+    worked -> theory [label="No"]
+    worked -> done [label="Yes"]
+
+}
+#+end_src
+
+#+RESULTS:
+[[file:graph.png]]

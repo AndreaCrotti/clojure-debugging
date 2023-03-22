@@ -154,6 +154,21 @@ Just a one line change adding an actual format made some requests that were taki
 | :clojure-debugging.speedy/defn_without-fmt | 21.22μs |
 | :clojure-debugging.speedy/defn_with-fmt    | 53.34μs |
 
+#+REVEAL: split
+
+#+begin_src clojure
+(defn parse
+  "Returns a DateTime instance in the UTC time zone obtained by parsing the
+   given string according to the given formatter."
+  (^org.joda.time.DateTime [^DateTimeFormatter fmt ^String s]
+   (.parseDateTime fmt s))
+  (^org.joda.time.DateTime [^String s]
+   (first
+    (for [f (vals formatters)
+          :let [d (try (parse f s) (catch Exception _ nil))]
+          :when d] d))))
+#+end_src
+
 ** A question of space
 
 #+begin_notes
@@ -175,19 +190,6 @@ Just a one line change adding an actual format made some requests that were taki
   (cp/future file-writing-pool
              (println "writing out these files")))
 
-#+end_src
-
-#+begin_src clojure
-(defn parse
-  "Returns a DateTime instance in the UTC time zone obtained by parsing the
-   given string according to the given formatter."
-  (^org.joda.time.DateTime [^DateTimeFormatter fmt ^String s]
-   (.parseDateTime fmt s))
-  (^org.joda.time.DateTime [^String s]
-   (first
-    (for [f (vals formatters)
-          :let [d (try (parse f s) (catch Exception _ nil))]
-          :when d] d)))
 #+end_src
 
 * Conclusions

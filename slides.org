@@ -9,14 +9,7 @@
 #+title: Problem Solving
 #+subtitle: For Software Engineers
 
-
-* TODO check if we need the TOC or should get rid
-
 * TODO think if the case studies are simple enough and add more information there
-
-* TODO get rid of the slide numbers that's just not necessary
-
-* TODO justify all the quotes from Sherlock Holmes
 
 *  Problem solving
 #+begin_notes
@@ -114,7 +107,8 @@ In this phase is also very important to keep track of all the attempts you've ma
 ** Are we done yet?
 
 #+begin_notes
-Assuming you
+Assuming you fixed the problem and deployed it successfully, are we done yet?
+
 #+end_notes
 
 #+begin_quote
@@ -129,7 +123,16 @@ Assuming you
 
 ** A slow request
 
-- moved an API from http to HTTPS
+#+begin_notes
+So the first example of problem solving was an issue we had while moving a project from a dedicated VM to the internal cloud platform.
+After doing that on UAT all the performance tests started to fail miserably and the API just became way too slow.
+No code was changed, so the only explanation was the actual infrastructure move, but was that the problem?
+Yes and no, the API got slower because of that change, but it turns out that we could not do anything about it, however after some profiling we found out that 90% of the time was actually used parsing strings into datetimes.
+
+Just a one line change adding an actual format made some requests that were taking minutes just take seconds, so even faster than before moving to the internal cloud.
+#+end_notes
+
+- moved an API from VM to internal cloud
 - the API got unbearably slow
 - no code changed
 - what is going on?
@@ -140,7 +143,11 @@ Assuming you
 (declare heavy-transformations)
 
 (defn do-lots-of-smart-stuff [request]
-  (let [ts (cf/parse (-> request :json-params :ts))]
+  (let [;; slow
+        ts (cf/parse (-> request :json-params :ts))
+        ;; very fast
+        ;; ts (cf/parse (-> request :json-params :ts) (cf/formatter "YYYY-MM-DD"))
+        ]
     (heavy-transformations (request))))
 #+end_src
 
@@ -151,6 +158,10 @@ Assuming you
 | :clojure-debugging.speedy/defn_with-fmt    | 53.34μs |
 
 ** A question of space
+
+#+begin_notes
+
+#+end_notes
 
 - kafka connect workers stop working
 - no code changed
@@ -176,42 +187,3 @@ Assuming you
 #+end_quote
 
 *WWHD* (What Would Holmes Do)
-
-* Murder or Bug
-
- #+ATTR_ORG: :width 150
-- Both
-  - can cause someone's death
-  - it's hard to find the culprit
-
-
- #+ATTR_ORG: :width 150
-- Bug
-  - can often reproduce locally
-
- #+ATTR_ORG: :width 150
-- Murder
-  - it's often the butler
-
- #+REVEAL_HTML: </div>
-* Put it all together
-
-#+begin_src dot :file graph.png
-digraph flow {
-    data [label="Collect Data"]
-    theory [label="Create Theory"]
-    worked [label="did it work", shape="diamond"]
-    done [label="Well done"]
-    test [label="Validate theory"]
-
-    data -> theory
-    theory -> test
-    test -> worked
-    worked -> theory [label="No"]
-    worked -> done [label="Yes"]
-
-}
-#+end_src
-
-#+RESULTS:
-[[file:graph.png]]

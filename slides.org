@@ -3,6 +3,7 @@
 #+REVEAL_TRANS: fade
 #+REVEAL_SPEED: fast
 #+REVEAL_TOC: listings
+#+REVEAL_INIT_OPTIONS: slideNumber:false
 
 #+title: Problem Solving
 #+subtitle: For Software Engineers
@@ -11,6 +12,8 @@
 * TODO check if we need the TOC or should get rid
 
 * TODO think if the case studies are simple enough and add more information there
+
+* TODO get rid of the slide numbers that's just not necessary
 
 * TODO justify all the quotes from Sherlock Holmes
 
@@ -34,19 +37,42 @@ Elementary, my dear Watson' ~ Sherlock Holmes
 
 * The method
 
+#+begin_notes
+There are lots of books about problem solving, where probably the most famous is "How to solve it" a small volume written in 1945, which I read ages ago and gave me the idea for this talk.
+That book in particular is quite focused on solving math problems, in this talk I just want to focus on software development so I just came up with some steps myself, from personal experience and other articles.
+#+end_notes
+
+** Don't
+
+#+begin_notes
+I will start with the things you should not do first.
+Specially when the problem you are trying to solve is affecting production you might panic and just try to rush to find a solution.
+Unfortunately that pretty much never helps and you if you don't think clearly you might just end up wasting a lot of time following the wrong lead, and make the situation even worse.
+For the same reason you should not try to guess without enough evidence.
+Lastly avoid pointing fingers, blaming the last person who deployed a change might just be wrong and will just put the other person on the defensive.
+#+end_notes
+
+- don't panic
+- don't rush
+- don't guess
+- don't blame
+
 ** Describe the problem
+
+#+begin_notes
+
+#+end_notes
 
 #+begin_quote
 “Data! Data! Data!” he cried impatiently. “I can’t make bricks without clay.” ~ Sherlock Holmes
 #+end_quote
 
-- don't guess!
 - gather as much data as possible
-- ask lots of questions
   - when did the problem happen first?
   - what did we change?
   - have any of the external dependencies changed?
   - what external factors are affecting the behaviour
+- write it all down
 
 ** Reproduce
 

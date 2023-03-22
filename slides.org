@@ -9,18 +9,16 @@
 #+title: Problem Solving
 #+subtitle: For Software Engineers
 
-* TODO think if the case studies are simple enough and add more information there
-
 *  Problem solving
 #+begin_notes
 As software engineers, we are constantly solving problems. They can be as hard
-as a subtle concurrency bug that takes a week to find, to just understanding why
+as a subtle concurrency bug that takes you a week to find, to just understanding why
 a library is not behaving as you think it should.
 
-This talk just concentrates on the hard problems and a method about how to tackle them.
-I'm in no way an expert problem solver, but the reasons why I wanted to give this talk is because in my career I've spent an enormous amount of time solving hard problems, and in retrospect with a more methodic approach would have allowed me to go way faster and not stress as much.
+This talk mostly concentrates on the hard problems and suggests a method about how to tackle them.
+As a disclaimer I'm in no way an expert problem solver, but I wanted to give this talk is because in my career I've spent an enormous amount of time solving hard problems, and in retrospect with a more methodic approach I would have been a lot faster and not stress as much.
 
-As you will see from the next slides there are lots of Sherlock Holmes, who I think would have been a great software engineer, or at least a great debugging consultant.
+As you will notice there are lots of Sherlock Holmes quotes in the slides, because I think that there is lots in common between solving murders and solving difficult software problems.
 Fun fact about the "Elementary, my dear Watson", these exact words are never used in Holmes stories, but it was paraphrased from the "Crooked Man", and it was “‘Excellent!’ I [Watson] cried. ‘Elementary,’ said he.”
 #+end_notes
 
@@ -33,7 +31,8 @@ Elementary, my dear Watson' ~ Sherlock Holmes
 
 #+begin_notes
 There are lots of books about problem solving, where probably the most famous is "How to solve it" a small volume written in 1945, which I read ages ago and gave me the idea for this talk.
-That book in particular is quite focused on solving math problems, in this talk I just want to focus on software development so I just came up with some steps myself, from personal experience and other articles.
+That book in particular is quite focused on solving math problems, in this talk I just want to focus on software development so I just came up with some steps myself, mostly from personal experience.
+The steps I'm suggesting won't apply to all the situations in the same way, but hopefully some main concepts will be general enough.
 #+end_notes
 
 ** Don't
@@ -68,7 +67,7 @@ In this phase you should collect all the evidence and write down a detailed desc
   - how often is it happening?
   - what did we change?
   - have any of the external dependencies changed?
-- *write it all down*
+- write it all down
 
 ** Reproduce
 
@@ -100,7 +99,7 @@ In this phase is also very important to keep track of all the attempts you've ma
 #+END_QUOTE
 
 - history is your friend
-- change *ONE VARIABLE AT A TIME*?
+- change *ONE VARIABLE AT A TIME*
 - keep track of all your attempts
 - test your fix in the real environment
 
@@ -181,6 +180,10 @@ Just a one line change adding an actual format made some requests that were taki
 #+end_src
 
 * Conclusions
+#+begin_notes
+I'll just leave you with a last quote from an Italian comedian, that more or less corresponds to "The answer inside you, but it's wrong".
+Hopefully next time you are facing a hard problem to debug you'll think What Would Holmes Do in this situation.
+#+end_notes
 
 #+begin_quote
 "The answer is inside you, but it's wrong" ~ Quelo

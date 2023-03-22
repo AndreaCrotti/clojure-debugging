@@ -27,6 +27,7 @@ This talk just concentrates on the hard problems and a method about how to tackl
 I'm in no way an expert problem solver, but the reasons why I wanted to give this talk is because in my career I've spent an enormous amount of time solving hard problems, and in retrospect with a more methodic approach would have allowed me to go way faster and not stress as much.
 
 As you will see from the next slides there are lots of Sherlock Holmes, who I think would have been a great software engineer, or at least a great debugging consultant.
+Fun fact about the "Elementary, my dear Watson", these exact words are never used in Holmes stories, but it was paraphrased from the "Crooked Man", and it was “‘Excellent!’ I [Watson] cried. ‘Elementary,’ said he.”
 #+end_notes
 
 
@@ -60,7 +61,9 @@ Lastly avoid pointing fingers, blaming the last person who deployed a change mig
 ** Describe the problem
 
 #+begin_notes
-
+The first phase is actually describing the problem and collecting all the evidence.
+This is probably the most important phase and maybe the most neglected one, even by senior developers.
+In this phase you should collect all the evidence and write down a detailed description of the problem.
 #+end_notes
 
 #+begin_quote
@@ -69,10 +72,10 @@ Lastly avoid pointing fingers, blaming the last person who deployed a change mig
 
 - gather as much data as possible
   - when did the problem happen first?
+  - how often is it happening?
   - what did we change?
   - have any of the external dependencies changed?
-  - what external factors are affecting the behaviour
-- write it all down
+- *write it all down*
 
 ** Reproduce
 
